@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxLengthValidator
 
 # Create your models here.
 class Mascota(models.Model):
@@ -14,7 +15,10 @@ class Mascota(models.Model):
     mascota= models.CharField(max_length=50, choices=mascotaSeleccion, default='gato')
     nombreMascota=models.CharField(max_length=50)
     titulo=models.CharField(max_length=50)
-    historia=models.CharField(max_length=40*80)
+    historia = models.TextField(
+        validators=[MaxLengthValidator(limit_value=3200, message='La historia no puede superar 40 líneas.')],
+        help_text="Ingresa la historia de la mascota (máximo 40 líneas)."
+    )
     fechaPublicacion=models.DateTimeField(auto_now_add=True)
     imagenMascota = models.ImageField(null=True, blank=True, upload_to="imagenes/")
     
@@ -23,4 +27,4 @@ class Mascota(models.Model):
    
     
     def __str__(self):
-        return self.titulo
+        return f'{self.autor} - {self.mascota} - {self.nombreMascota} - {self.titulo} '

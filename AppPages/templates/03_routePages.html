@@ -1,0 +1,30 @@
+{% extends "00_padre.html" %}
+{% load static %}
+
+{% block titulo %} Lista de Historias {% endblock %}
+
+{% block contenido_que_cambia %}
+<div class="container text-center">
+    <h3>{{ mensaje }}</h3>
+</div>
+<div class="container text-center">
+    <div class="row">
+            {% for mascotaHistoria in mascotasHistorias %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                <h5>{{mascotaHistoria.titulo}}</h5>
+                <img src="{{ mascotaHistoria.imagenMascota.url }}" alt="avatar" width="250" height="auto" />
+
+                <br>
+                Autor: {{mascotaHistoria.autor}}
+                <br>
+                <p>Fecha de publicación:  {{mascotaHistoria.fechaPublicacion}}</p>
+                <a class="navbar-brand" href="{% url 'routePagesId' mascotaHistoria.id %}">Ver Historia ></a>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

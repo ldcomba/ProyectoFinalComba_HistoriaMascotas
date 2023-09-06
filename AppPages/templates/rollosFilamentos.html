@@ -1,0 +1,46 @@
+{% extends "padreAppImp.html" %}
+{% load static %}
+
+{% block titulo %} PAGINA DE ROLLOS {% endblock %}
+
+{% block contenido_que_cambia %}
+    <h2> Formulario Ingreso Filamentos</h2>
+    
+    <form action="{% url 'rollosFilamentos' %}" method="POST"> {% csrf_token %}
+        
+        <table> {{formulario.as_table}}  </table>
+        
+        <input type="submit" value="Agregar">
+    </form>
+
+    <h3> {{ mensaje }} </h3>
+
+    <br>
+
+    <br>
+
+    <h2>Busqueda Rollos</h2>
+    <form action="{% url 'rollosFilamentos' %}?busquedaIs=true" method="GET">
+        <input type="text" name="materialBusqueda" id="materialBusqueda" placeholder="material">
+        <input type="text" name="colorBusqueda" id="colorBusqueda" placeholder="color">
+        <input type="submit" value="buscar rollo">
+    </form>
+    
+    <h3> {{ mensajeBusqueda }} </h3>
+
+    <br>
+
+    <h2> Listado Filamentos</h2>
+    <ul>
+        {% for rolloFilamento in rollosFilamentos %}
+            <table> {{rolloFilamento.id}} - {{rolloFilamento.fabricante}} - {{rolloFilamento.material}} - {{rolloFilamento.color}} - {{rolloFilamento.dimetroFilamento}} - {{rolloFilamento.disponible}}</table>
+    
+        {% endfor %}
+    
+    </ul>
+
+
+
+
+
+{% endblock %}

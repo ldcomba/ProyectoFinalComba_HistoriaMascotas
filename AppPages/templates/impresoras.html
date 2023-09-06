@@ -1,0 +1,33 @@
+{% extends "padreAppImp.html" %}
+{% load static %}
+
+{% block titulo %} IMPRESORAS {% endblock %}
+
+{% block contenido_que_cambia %}
+    <h2> Formulario Ingreso Impresoras 3d</h2>
+    
+    <form action="{% url 'impresoras' %}" method="POST"> {% csrf_token %}
+        
+        <table> {{formulario.as_table}}  </table>
+        
+        <input type="submit" value="Agregar">
+    </form>
+
+    <h3> {{ mensaje }} </h3>
+
+    <br>
+
+    <br>
+    <h2> Listado Impresoras</h2>
+    <ul>
+        {% for impresora in impresoras %}
+            <table> {{impresora.id}} - {{impresora.fabricante}} - {{impresora.modelo}}</table>
+    
+        {% endfor %}
+    
+    </ul>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "00_padre.html" %}
+{% load static %}
+
+{% block titulo %} Acerca de Mi {% endblock %}
+
+{% block contenido_que_cambia %}
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            
+            
+            
+            <!--div class="img-fluid rounded-circle mb-3" style="background-image: url('{% static 'AppPages/assets/img/Img_aboutMe.jpg' %}')" ></div-->
+            <div class="col-lg-3 rounded-circle d-flex align-items-center" style="background-image: url('{% static 'AppPages/assets/img/Img_aboutMe.jpg' %}');
+            background-size: 100% 100%; /* Ajusta estos valores para cambiar el tamaño de la imagen */
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 300px; /* Ajusta el tamaño del contenedor según tus necesidades */
+            height: 300px; /* Ajusta el tamaño del contenedor según tus necesidades */
+            padding-top: 50px;
+        ">
+            <!-- Contenido adicional aquí -->
+        </div>
+        
+        
+              
+            <div class="col-lg-7" style="height: 300px;
+            padding-top: 40px;
+            padding-left: 50px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            align-items: center;"
+            > 
+                <h3>Leandro Comba</h3>
+                <p class="lead mb-3"> Bienvenidos al Blog, mi nombre es Leandro soy Ingeniero mecánico, actualmente trabajo en el area de Ingeniería de procesos.
+                    Hace unos años realice un curso en visual basic de excel, lo cual marcó el inicio de mi apasionante viaje en la programación, creando pequeños scripts y 
+                    automatizando tareas.
+                    Posteriormente, me aventuré en el mundo de Power Platform, incluyendo Power Apps, Power Automate y Power BI. Ahora, estoy
+                    aprendiendo Python y Django, sin duda dos herramientas poderosas.
+                    Agradezco tu visita a mi blog,  Te invito a seguirme en las redes sociales para mantenernos conectados.
+                    
+                </p >
+                <p class="lead mb-3"> Muchas Gracias!. </p>
+                
+            </div>
+            <div class="col-lg-3" style="height: 300px;
+            padding-top:200px;
+            padding-left: 150px;">
+                    
+                    
+                    <h6>Sigueme en:<h6>
+                    <a href="https://github.com/ldcomba"><i class="bi bi-github text-dark mx-3" style="font-size: 50px;"></i></a>
+                    <a href="https://www.linkedin.com/in/leandro-comba-79a9046a"><i class="bi bi-linkedin text-dark mb-lg-0" style="font-size: 50px;"></i></a>
+            
+            </div>
+        </div>
+    </div>
+</section>  
+    
+
+
+
+
+{% endblock %}

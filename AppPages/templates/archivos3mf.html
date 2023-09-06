@@ -1,0 +1,19 @@
+{% extends "padreAppImp.html" %}
+{% load static %}
+
+{% block titulo %} PAGINA DE ARCHIVOS 3mf {% endblock %}
+
+{% block contenido_que_cambia %}
+    <h1> Formulario Archivos3mf</h1>
+    
+    <form action="{% url 'archivos3mf' %}" method="POST"> {% csrf_token %}
+        
+        <table> {{formulario.as_table}}  </table>
+        
+        <input type="submit" value="Agregar">
+    </form>
+
+    <h3> {{ mensaje }} </h3>
+
+
+{% endblock %}
