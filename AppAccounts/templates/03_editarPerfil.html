@@ -4,7 +4,10 @@
 {% block titulo %} EDITAR PERFIL DE {{ nombreusuario }} {% endblock %}
 
 {% block contenido_que_cambia %}
-   <H3>{{ mensaje }}</H3>
+<style>  .red-text {color: red;}</style>
+<H3 class="red-text" style="padding-left: 40px;"> {{ mensaje }}</H3>
+
+
    <form action="{% url 'AppAccounts:editarPerfil' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
     <table>
         {{ form.as_table}}

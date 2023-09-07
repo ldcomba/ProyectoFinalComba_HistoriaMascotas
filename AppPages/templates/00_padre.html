@@ -37,15 +37,15 @@
                 
                 {% if user.is_authenticated %}
                 
-                <a class="navbar-brand"> Bienvenido: {{ user.username }} </a>
-
+                <a class="navbar-brand">  {{ user.username }} </a>
+                <img src="{{ avatar }}" alt="avatar" style="width:auto;height:60px;" >
 
                 
                 
                 <a class="btn btn-success" href="{% url 'AppAccounts:logout' %}">Desloguearse</a>
 
-                <a class="btn btn-success" href="{% url 'AppAccounts:editarPerfil' %}">editarPerfil</a>
-
+                <a class="btn btn-success" href="{% url 'AppAccounts:editarPerfil' %}">Editar Perfil</a>
+                <a class="btn btn-success" href="{% url 'AppAccounts:cambiarPass' %}">Cambiar Contraseña</a>
                 {% else %}
                 <a class="btn btn-success" href="{% url 'AppAccounts:login' %}">Loguearse</a>
                 <a class="btn btn-success" href="{% url 'AppAccounts:register' %}">Registrarse</a>

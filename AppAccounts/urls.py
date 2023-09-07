@@ -11,4 +11,6 @@ urlpatterns = [
     path('login/',login_request, name='login'),
     path('register/', register, name='register'),
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
+    #path('cambiarPass/',cambiarPass, name='cambiarPass'),
+    path('cambiarPass/', CambiarContrasenaView.as_view(), name='cambiarPass'),
 ]
