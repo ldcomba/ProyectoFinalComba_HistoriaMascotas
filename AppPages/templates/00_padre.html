@@ -29,6 +29,27 @@
                 <a class="btn btn-primary" href="">aaa</a>
                 <a class="btn btn-primary" href="">qqq</a>
                 <a class="navbar-brand" href="{% url 'aboutMe' %}">Acerca de Mi</a>
+
+
+
+                <a class="navbar-brand text-black bg-black" style="height: 50px; line-height: 50px;">     1     </a>
+                
+                
+                {% if user.is_authenticated %}
+                
+                <a class="navbar-brand"> Bienvenido: {{ user.username }} </a>
+
+
+                
+                
+                <a class="btn btn-success" href="{% url 'AppAccounts:logout' %}">Desloguearse</a>
+
+                <a class="btn btn-success" href="{% url 'AppAccounts:editarPerfil' %}">editarPerfil</a>
+
+                {% else %}
+                <a class="btn btn-success" href="{% url 'AppAccounts:login' %}">Loguearse</a>
+                <a class="btn btn-success" href="{% url 'AppAccounts:register' %}">Registrarse</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->

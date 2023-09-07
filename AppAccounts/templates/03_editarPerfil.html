@@ -1,0 +1,14 @@
+{% extends "00_padre.html" %}
+{% load static %}
+
+{% block titulo %} EDITAR PERFIL DE {{ nombreusuario }} {% endblock %}
+
+{% block contenido_que_cambia %}
+   <H3>{{ mensaje }}</H3>
+   <form action="{% url 'AppAccounts:editarPerfil' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <table>
+        {{ form.as_table}}
+    </table>
+    <input type="submit" value="Guardar">
+   </form>
+{% endblock %}
