@@ -4,24 +4,32 @@
 {% block titulo %} CHAT ROOM {{ user.username }} {% endblock %}
 
 {% block contenido_que_cambia %}
-   <H6 style="text-align: center;">{{ mensaje }}</H6>
+   <H6 style="text-align: center;">{{receptorSeleccionado}}</H6>
 
+
+
+   {% if chatFormulario|default:'' == "" %}
    <form method="POST"  style="text-align: center; height: 100px; flex-direction: column; justify-content: center; align-items: center; font-size: 125%;">
       {% csrf_token %}
       
-      <span style="background-color: #198754; padding: 30px; border-radius: 10px;">
+      <span style="background-color: #198754; padding: 25px; border-radius: 10px;">
       <label for="usuarios" style="font-size: 125%;">Selecciona un usuario:</label>
       <select name="usuarios" id="usuarios">
         {% for usuario in usuarios %}
-          <option value="{{ usuario.id }}">{{ usuario.username }}</option>
+          <option value="{{ usuario.id }}" >{{ usuario.username }}</option>
         {% endfor %}
       </select>
+      
+      <input type="hidden" name="posteo" value="1">
       <input type="submit" value="Abrir Chat" >
-   </span>  
-
+   </span>   
     </form>
 
+    {% endif %}
+
+
     {{user.id}}
+
     {% for mensajeEntreEllos in mensajesEntreEllos %}
          {% if mensajeEntreEllos.emisor.id == user.id %}
             <!--p style="text-align: right; background-color: green; color: white; padding: 10px;">{{ mensajeEntreEllos.mensaje }} {{ mensajeEntreEllos.emisor }}</p-->
@@ -37,4 +45,21 @@
          {% endif %}
 
     {% endfor %}
-{% endblock %}
+
+             
+    <div style="text-align: center;">
+      <form method="POST" style="display: inline-block; text-align: left;">
+        {% csrf_token %}
+        <table style="margin: 0 auto; text-align: center;">
+          {{ chatFormulario.as_table }}
+        </table>
+        {% if chatFormulario %}
+        <input type="hidden" name="receptor" value= "{{receptorSeleccionado}}">
+        <input type="hidden" name="posteo" value="2">
+        <input type="submit" value="Enviar Mensaje">
+        {% endif %}
+      </form>
+    </div>
+    
+
+{% endblock %} 

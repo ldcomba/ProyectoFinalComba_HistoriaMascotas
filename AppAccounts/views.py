@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, update_session_auth_hash
 from .models import PerfilUsuario, Comentario #Curso, Profesor, Estudiante, Avatar
-from .forms import RegistroUsuarioForm,UserEditForm,CambiarContrasegnaForm
+from .forms import RegistroUsuarioForm,UserEditForm,CambiarContrasegnaForm,ChatForm
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
@@ -13,6 +13,7 @@ from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.utils import timezone
 # Create your views here.
 
 
@@ -103,17 +104,41 @@ def chatRoom(request):
     usuarios = User.objects.all()
     #form=UserEditForm(request.POST)
     if request.method=="POST":
-        usuario_seleccionado_id = request.POST.get('usuarios')
-        mensaje= usuario_seleccionado_id
-        #Comentario
-        #mensasjesEntreEllos = Comentario.objects.filter(Q(emisor=request.user.id) & Q(receptor=usuario_seleccionado_id) )
-        mensajesEntreEllos = Comentario.objects.filter(
-Q(emisor=request.user.id, receptor=usuario_seleccionado_id) | Q(emisor=usuario_seleccionado_id, receptor=request.user.id)
-).order_by('fechaComentario')
+        posteo = request.POST.get('posteo')
+        print(posteo)
+        if posteo=="1" :
+            usuario_seleccionado_id = request.POST.get('usuarios')
+            receptorSeleccionado_id= usuario_seleccionado_id
+            
+
+        if posteo=="2":
+            receptor = request.POST.get('receptor')
+            receptorSeleccionado_id=receptor
+            #print("Valor de receptor:", receptor)
+            form=ChatForm(request.POST)
+            if form.is_valid():
+                info=form.cleaned_data
+                emisor = request.user
+                receptorSeleccionado = User.objects.get(id=receptorSeleccionado_id)
+                receptor = receptorSeleccionado
+                mensaje = info["mensaje"]
+                leido= False
+                fechaComentario = timezone.now().date()
+                comentario=Comentario(emisor=emisor,receptor=receptor,mensaje=mensaje,leido=leido,fechaComentario=fechaComentario)
+                comentario.save()
+
         
-        return render(request, "05_chatRoom.html", {'usuarios': usuarios, "mensaje":mensaje,"mensajesEntreEllos":mensajesEntreEllos})    
+
+            #Comentario
+            #mensasjesEntreEllos = Comentario.objects.filter(Q(emisor=request.user.id) & Q(receptor=usuario_seleccionado_id) )
+        mensajesEntreEllos = Comentario.objects.filter(
+    Q(emisor=request.user.id, receptor=receptorSeleccionado_id) | Q(emisor=receptorSeleccionado_id, receptor=request.user.id)
+    ).order_by('fechaComentario')
+        
+        chatFormulario= ChatForm()
+        return render(request, "05_chatRoom.html", {'usuarios': usuarios, "receptorSeleccionado":receptorSeleccionado_id,"mensajesEntreEllos":mensajesEntreEllos,"chatFormulario":chatFormulario,"avatar":obtenerAvatar(request)})    
     else:
-        return render(request, "05_chatRoom.html", {'usuarios': usuarios})    
+        return render(request, "05_chatRoom.html", {'usuarios': usuarios,"avatar":obtenerAvatar(request)})    
         
 
 

@@ -37,11 +37,11 @@ class CambiarContrasegnaForm(PasswordChangeForm):
     new_password1 = forms.CharField(label="Nueva Contraseña", widget=forms.PasswordInput(attrs={'style': 'height: 50px;'}))
     new_password2 = forms.CharField(label="Repetir nueva contraseña", widget=forms.PasswordInput(attrs={'style': 'height: 50px;'}))
 
-class ChatForm (UserChangeForm,forms.Form):
-    email= forms.EmailField(label="Email Usuario")
-    password= forms.CharField(label="Contraseña Actual", widget=forms.PasswordInput)
-    first_name=forms.CharField(label='Modificar Nombre',required=False)
-    last_name=forms.CharField(label='Modificar Apellido',required=False)
-    imagen = forms.ImageField(label="imagen", required=False)  # Campo de imagen no obligatorio
-    descripcion = forms.CharField(widget=forms.Textarea, label='Descripción sobre usted',required=False)
-    linkPaginaWeb=forms.URLField(label='Su red social',required=False,widget=forms.TextInput(attrs={'style': 'width: 500px;'}))  
+class ChatForm (forms.Form):
+
+    mensaje= forms.CharField(label='Escriba su mensaje',required=False,widget=forms.Textarea)
+    # first_name=forms.CharField(label='Modificar Nombre',required=False)
+    # last_name=forms.CharField(label='Modificar Apellido',required=False)
+    # imagen = forms.ImageField(label="imagen", required=False)  # Campo de imagen no obligatorio
+    # descripcion = forms.CharField(widget=forms.Textarea, label='Descripción sobre usted',required=False)
+    # #linkPaginaWeb=forms.URLField(label='Su red social',required=False,widget=forms.TextInput(attrs={'style': 'width: 500px;'}))  
