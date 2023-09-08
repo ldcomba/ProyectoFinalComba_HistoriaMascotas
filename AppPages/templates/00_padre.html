@@ -26,8 +26,6 @@
             <div class="container">
                 <a class="navbar-brand" href="{% url 'home' %}">Home</a>
                 <a class="navbar-brand" href="{% url 'routePages' %}"> Historias de Mascotas</a>
-                <a class="btn btn-primary" href="">aaa</a>
-                <a class="btn btn-primary" href="">qqq</a>
                 <a class="navbar-brand" href="{% url 'aboutMe' %}">Acerca de Mi</a>
 
 
@@ -46,6 +44,12 @@
 
                 <a class="btn btn-success" href="{% url 'AppAccounts:editarPerfil' %}">Editar Perfil</a>
                 <a class="btn btn-success" href="{% url 'AppAccounts:cambiarPass' %}">Cambiar Contraseña</a>
+
+                <a href="{% url 'AppAccounts:chatRoom' %}">
+                    <img src="{% static 'AppPages/assets/img/chatIcon.webp' %}" alt="Imagen de ejemplo" height="60px" width=auto>
+                </a>
+              
+
                 {% else %}
                 <a class="btn btn-success" href="{% url 'AppAccounts:login' %}">Loguearse</a>
                 <a class="btn btn-success" href="{% url 'AppAccounts:register' %}">Registrarse</a>

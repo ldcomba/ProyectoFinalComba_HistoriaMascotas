@@ -13,4 +13,5 @@ urlpatterns = [
     path('editarPerfil/', editarPerfil, name='editarPerfil'),
     #path('cambiarPass/',cambiarPass, name='cambiarPass'),
     path('cambiarPass/', CambiarContrasenaView.as_view(), name='cambiarPass'),
+    path('chatRoom/',chatRoom,name='chatRoom')
 ]

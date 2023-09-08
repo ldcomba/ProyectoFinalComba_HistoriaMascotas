@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, update_session_auth_hash
-from .models import PerfilUsuario #Curso, Profesor, Estudiante, Avatar
+from .models import PerfilUsuario, Comentario #Curso, Profesor, Estudiante, Avatar
 from .forms import RegistroUsuarioForm,UserEditForm,CambiarContrasegnaForm
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -11,7 +11,8 @@ from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-
+from django.contrib.auth.models import User
+from django.db.models import Q
 # Create your views here.
 
 
@@ -97,6 +98,30 @@ def editarPerfil(request):
         form=UserEditForm(instance=usuario,initial={"descripcion":perfilUsuario.descripcion,"linkPaginaWeb":perfilUsuario.linkPaginaWeb,"imagen":perfilUsuario.imagen})
     
         return render(request, "03_editarPerfil.html", {"form": form, "nombreusuario":usuario.username, "mensaje":mensaje,  "avatar":obtenerAvatar(request)})     
+
+def chatRoom(request):
+    usuarios = User.objects.all()
+    #form=UserEditForm(request.POST)
+    if request.method=="POST":
+        usuario_seleccionado_id = request.POST.get('usuarios')
+        mensaje= usuario_seleccionado_id
+        #Comentario
+        #mensasjesEntreEllos = Comentario.objects.filter(Q(emisor=request.user.id) & Q(receptor=usuario_seleccionado_id) )
+        mensajesEntreEllos = Comentario.objects.filter(
+Q(emisor=request.user.id, receptor=usuario_seleccionado_id) | Q(emisor=usuario_seleccionado_id, receptor=request.user.id)
+).order_by('fechaComentario')
+        
+        return render(request, "05_chatRoom.html", {'usuarios': usuarios, "mensaje":mensaje,"mensajesEntreEllos":mensajesEntreEllos})    
+    else:
+        return render(request, "05_chatRoom.html", {'usuarios': usuarios})    
+        
+
+
+
+
+
+
+
 
 
 # def cambiarPass(request):
