@@ -10843,8 +10843,8 @@ header.masthead {
   background-color: #343a40;
   background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
   background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 header.masthead:before {
   content: "";
@@ -10859,10 +10859,10 @@ header.masthead:before {
 header.masthead h1, header.masthead .h1 {
   font-size: 2rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 400px) {
   header.masthead {
-    padding-top: 12rem;
-    padding-bottom: 12rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
   header.masthead h1, header.masthead .h1 {
     font-size: 3rem;
@@ -10870,15 +10870,17 @@ header.masthead h1, header.masthead .h1 {
 }
 
 .showcase .showcase-text {
-  padding: 3rem;
+  padding: 5px;
+  height: 300px;
+  
 }
 .showcase .showcase-img {
-  min-height: 30rem;
-  background-size: cover;
+  min-height:5px;
+  background-size: auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 300px) {
   .showcase .showcase-text {
-    padding: 7rem;
+    padding: 5px;
   }
 }
 
@@ -10897,7 +10899,7 @@ header.masthead h1, header.masthead .h1 {
 .call-to-action {
   position: relative;
   background-color: #343a40;
-  background: url("../assets/img/bg-masthead.jpg") no-repeat center center;
+  background: url("../assets/img/Dog-and-Cat-1020.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 7rem;
   padding-bottom: 7rem;
@@ -10916,4 +10918,12 @@ header.masthead h1, header.masthead .h1 {
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
+}
+
+a .bi.icon-grande {
+  font-size: 30px;
+}
+
+.bg-violeta-pastel {
+  background-color: #D8BFD8; /* Cambia el código de color según tus preferencias */
 }

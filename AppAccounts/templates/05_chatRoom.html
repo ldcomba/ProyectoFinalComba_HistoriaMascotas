@@ -16,7 +16,9 @@
       <label for="usuarios" style="font-size: 125%;">Selecciona un usuario:</label>
       <select name="usuarios" id="usuarios">
         {% for usuario in usuarios %}
+        
           <option value="{{ usuario.id }}" >{{ usuario.username }}</option>
+
         {% endfor %}
       </select>
       
@@ -34,15 +36,31 @@
          {% if mensajeEntreEllos.emisor.id == user.id %}
             <!--p style="text-align: right; background-color: green; color: white; padding: 10px;">{{ mensajeEntreEllos.mensaje }} {{ mensajeEntreEllos.emisor }}</p-->
             <p style="text-align: right;padding:10px; padding-right: 600px ; ">
-                  <span style="background-color: green; color: white; padding: 15px; border-radius: 5px;">{{ mensajeEntreEllos.mensaje }}</span> {{ mensajeEntreEllos.emisor }}
+              {% if mensajeEntreEllos.leido == False %}
+              No leido
+              <img src="{% static 'AppPages/assets/img/enviado2.jpg' %}" alt="avatar" style="width:auto;height:20px;" >
+              {% else %}
+              leido
+              <img src="{% static 'AppPages/assets/img/leido.jpg' %}" alt="avatar" style="width:auto;height:20px;" >
+              {% endif %}
+
+              
+              <span style="background-color: green; color: white; padding: 15px; border-radius: 5px;">{{ mensajeEntreEllos.mensaje }}</span> {{ mensajeEntreEllos.emisor }}
+               
+
+              
+
                 </p>
-                
              
          {% else %}
             <p style="text-align: left; padding:10px;  padding-left:600px ;"> 
                {{ mensajeEntreEllos.emisor }} <span style="background-color: rgb(112, 117, 112); color: white; padding: 15px; border-radius: 5px;"> {{mensajeEntreEllos.mensaje}} </span>  
              </p>
-         {% endif %}
+        
+        
+        
+        
+             {% endif %}
 
     {% endfor %}
 

@@ -101,7 +101,7 @@ def editarPerfil(request):
         return render(request, "03_editarPerfil.html", {"form": form, "nombreusuario":usuario.username, "mensaje":mensaje,  "avatar":obtenerAvatar(request)})     
 
 def chatRoom(request):
-    usuarios = User.objects.all()
+    usuarios = User.objects.exclude(username=request.user.username)
     #form=UserEditForm(request.POST)
     if request.method=="POST":
         posteo = request.POST.get('posteo')
@@ -134,6 +134,13 @@ def chatRoom(request):
         mensajesEntreEllos = Comentario.objects.filter(
     Q(emisor=request.user.id, receptor=receptorSeleccionado_id) | Q(emisor=receptorSeleccionado_id, receptor=request.user.id)
     ).order_by('fechaComentario')
+        
+
+        mensajesLeidos = Comentario.objects.filter(Q(emisor=receptorSeleccionado_id, receptor=request.user.id)).order_by('fechaComentario')
+        for mensajeLeido in mensajesLeidos:
+            mensajeLeido.leido=True
+            mensajeLeido.save()
+
         
         chatFormulario= ChatForm()
         return render(request, "05_chatRoom.html", {'usuarios': usuarios, "receptorSeleccionado":receptorSeleccionado_id,"mensajesEntreEllos":mensajesEntreEllos,"chatFormulario":chatFormulario,"avatar":obtenerAvatar(request)})    
