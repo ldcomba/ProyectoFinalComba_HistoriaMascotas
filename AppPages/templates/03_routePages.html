@@ -44,6 +44,7 @@
                         <input type="hidden" name="tipoDeModificacion" value="editar">
                     </button>
                 </form>
+                
                 <br>
                 <form method="POST" style="display: inline-block; text-align: left;">
                     {% csrf_token %}
@@ -54,11 +55,13 @@
                         <input type="hidden" name="tipoDeModificacion" value="eliminar">
                     </button>
                 </form>
+                <br>
                 {% endif %}
-
+                <br>
                 </div>
             </div>
             {% endfor %}
+            <br>
     </div>
 </div>
 

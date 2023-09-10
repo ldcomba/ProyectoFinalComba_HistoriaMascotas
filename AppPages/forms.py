@@ -8,10 +8,15 @@ class MascotaForm(forms.ModelForm):
  
  
     historia = forms.CharField(widget=forms.Textarea(attrs={'rows': 10, 'cols': 40}), required=True )
+    id = forms.CharField(
+        widget=forms.HiddenInput(),
+        required=False  
+    )
+
 
     class Meta:
         model = Mascota
-        fields = ['mascota', 'nombreMascota', 'titulo', 'historia'] #, 'imagenMascota'
+        fields = ['id','mascota', 'nombreMascota', 'titulo', 'historia'] #, 'imagenMascota'
         labels = {
             'nombreMascota': 'Nombre de la Mascota',
             'imagenMascota': 'Imagen de la Mascota',

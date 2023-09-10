@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ventana Emergente de Confirmación</title>
+</head>
+<body>
+
+<button onclick="mostrarConfirmacion()">Mostrar Confirmación</button>
+
+<script>
+function mostrarConfirmacion() {
+    // Mostrar una ventana emergente de confirmación
+    var resultado = window.confirm("¿Estás seguro de que deseas continuar?");
+    
+    // Verificar la respuesta del usuario
+    if (resultado) {
+        alert("El usuario eligió Aceptar.");
+        // Aquí puedes realizar acciones adicionales si el usuario elige "Aceptar".
+    } else {
+        alert("El usuario eligió Cancelar.");
+        // Aquí puedes realizar acciones adicionales si el usuario elige "Cancelar" o simplemente no hacer nada.
+    }
+}
+</script>
+
+</body>
+</html>
