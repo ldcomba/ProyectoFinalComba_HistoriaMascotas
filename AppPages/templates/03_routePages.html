@@ -13,8 +13,19 @@
             <div class="col-sm-6 align-items-center">
                 <div class="card-body">
                 <h5>{{mascotaHistoria.titulo}}</h5>
-                <img src="{{ mascotaHistoria.imagenMascota.url }}" alt="avatar" width="250" height="auto" />
+                
+             
+                {% if  mascotaHistoria.imagenMascota  == "" %}
+                    <img src="{% static 'AppPages/assets/img/noImage.jpg' %}" alt="avatar" style="width:250px;height:auto;" >
+                {% else %}
+                    <img src="{{ mascotaHistoria.imagenMascota.url }}" alt="avatar" width="250px" height="auto" />
+                {% endif %}
 
+
+
+
+              
+                
                 <br>
                 Autor: {{mascotaHistoria.autor}}
                 <br>

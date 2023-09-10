@@ -11,10 +11,10 @@ class Mascota(models.Model):
         ('pez','Pez'),
         ('otro','Otro')
     )
-    autor=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    mascota= models.CharField(max_length=50, choices=mascotaSeleccion, default='gato')
-    nombreMascota=models.CharField(max_length=50)
-    titulo=models.CharField(max_length=50)
+    autor=models.ForeignKey(User, on_delete=models.CASCADE,blank=False)
+    mascota= models.CharField(max_length=50, choices=mascotaSeleccion, default='')
+    nombreMascota=models.CharField(max_length=50, blank=False)
+    titulo=models.CharField(max_length=50,blank=False)
     historia = models.TextField(
         validators=[MaxLengthValidator(limit_value=3200, message='La historia no puede superar 40 líneas.')],
         help_text="Ingresa la historia de la mascota (máximo 40 líneas)."

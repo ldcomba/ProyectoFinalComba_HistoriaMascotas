@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from .models import Mascota 
 from AppAccounts.models import PerfilUsuario
-
+from .forms import MascotaForm
 #from .models import Impresora, RolloFilamento, Archivo3mf   
 from django.http import HttpResponse
 #from .forms import ImpresoraForm, RolloFilamentoForm, Archivo3mfForm
 from django.db.models import Q
 # Create your views here.
+from django.contrib.auth.decorators import login_required # para vistas basadas en Def
 
 
 def obtenerAvatar(request):
@@ -41,11 +42,34 @@ def routePages(request):
 
 def routePagesId (request,id):
     mascotasHistorias=Mascota.objects.get(id=id)
-    if len(mascotasHistorias.imagenMascota)==0:
+    if mascotasHistorias.imagenMascota == "":
         mensaje= "Esta publicación no tiene imagen comunicarse con el admin"
     else:
         mensaje=""
     
     return render(request, "04_routePagesId.html",{"mascotasHistorias":mascotasHistorias,"mensaje":mensaje,"avatar":obtenerAvatar(request)})
+
+
+@login_required # para vistas basadas en Def
+def crearHistoria(request):
+    form=MascotaForm(request.POST)
+    if request.method=="POST":
+       if form.is_valid():
+            info=form.cleaned_data
+            mascota=info["mascota"]
+            autor=request.user
+            nombreMascota=info["nombreMascota"]
+            titulo=info["titulo"]
+            historia=info["historia"]
+            mascota=Mascota(mascota=mascota,autor=autor,nombreMascota=nombreMascota,titulo=titulo,historia=historia)
+            mascota.save()
+            mensaje= "Historia creada con éxito"
+       return render(request,"01_home.html",{"avatar":obtenerAvatar(request),"mensaje":mensaje})
+    else:
+        formulario= MascotaForm()
+        return render(request, "05_crearHistoria.html",{"formulario":formulario,"avatar":obtenerAvatar(request)})
+
+
+
 
 

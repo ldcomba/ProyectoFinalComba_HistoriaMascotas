@@ -39,7 +39,9 @@ class CambiarContrasegnaForm(PasswordChangeForm):
 
 class ChatForm (forms.Form):
 
-    mensaje= forms.CharField(label='Escriba su mensaje',required=False,widget=forms.Textarea)
+    #mensaje= forms.CharField(label='Escriba su mensaje',required=False,widget=forms.Textarea)
+    mensaje = forms.CharField(label='Escriba su mensaje', required=False, widget=forms.Textarea(attrs={'rows': 3}))
+
     # first_name=forms.CharField(label='Modificar Nombre',required=False)
     # last_name=forms.CharField(label='Modificar Apellido',required=False)
     # imagen = forms.ImageField(label="imagen", required=False)  # Campo de imagen no obligatorio

@@ -13,11 +13,19 @@
                 
                 <div class="card-body">
                 <h5></h5>
-                <img src="{{ mascotasHistorias.imagenMascota.url }}" alt="avatar" width="500" height="auto" />
                 
+                        {% if  mascotasHistorias.imagenMascota  == "" %}
+                            <img src="{% static 'AppPages/assets/img/noImage.jpg' %}" alt="avatar" style="width:500px;height:auto;" >
+                        {% else %}
+                            <img src="{{ mascotasHistorias.imagenMascota.url }}" alt="avatar" width="500" height="auto" />
+                        {% endif %}
+
+
+
+
                 <div style="text-align: left;">
                     <br>
-                    {{ mascotasHistorias.historia }}
+                    <p style="font-size: 20px;"> {{ mascotasHistorias.historia }}</p>
                     <br>
                 </div>
 

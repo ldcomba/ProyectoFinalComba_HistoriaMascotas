@@ -8,6 +8,7 @@ urlpatterns = [
     path('aboutMe/', aboutMe, name="aboutMe"),
     path('routePages/',routePages,name="routePages"),
     path("routePages/<id>", routePagesId, name="routePagesId"),
+    path('crearHistoria/',crearHistoria,name="crearHistoria"),
     # path("listar_curso/", Listar_cursos),
     # path("cursos/",cursos, name="cursos"),
     # path("profesores/",profesores, name="profesores"),
