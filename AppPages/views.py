@@ -31,7 +31,7 @@ def routePages(request):
         mascotasHistorias=Mascota.objects.all()
         historiaId = request.POST.get('historiaId')
         tipoDeModificacion = request.POST.get('tipoDeModificacion')
-        mensaje="" + historiaId + tipoDeModificacion
+        mensaje="La historia de Id: " + historiaId  + " Fue eliminada" 
         historia = Mascota.objects.get(id=historiaId)
         if tipoDeModificacion == "eliminar":
            historia.delete()
