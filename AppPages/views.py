@@ -28,7 +28,10 @@ def aboutMe (request):
 
 def routePages(request):
     if request.method=="POST":
-       pass
+       mascotasHistorias=Mascota.objects.all()
+       historiaId = request.POST.get('historiaId')
+       tipoDeModificacion = request.POST.get('tipoDeModificacion')
+       mensaje="" + historiaId + tipoDeModificacion
     else:
         mascotasHistorias=Mascota.objects.all()
         #mascotasHistorias=""
@@ -72,4 +75,24 @@ def crearHistoria(request):
 
 
 
+@login_required # para vistas basadas en Def 
+def editarHistoria(request):
+    mascotasHistorias=Mascota.objects.all()
+    if request.method=="POST":
+        historiaId = request.POST.get('historiaId')
+    mensaje= "historia editada"
+    return render(request, "03_routePages.html",{"mascotasHistorias":mascotasHistorias,"mensaje":mensaje,"avatar":obtenerAvatar(request)})
 
+
+def eliminarHistoria(request):
+    mensaje="historia eliminada"
+    mascotasHistorias=Mascota.objects.all()
+    if request.method=="POST":
+        historiaId = request.POST.get('historiaId')
+        mensaje= "historia eliminada" + historiaId
+        #pass
+
+    return render(request, "03_routePages.html",{"mascotasHistorias":mascotasHistorias,"mensaje":mensaje,"avatar":obtenerAvatar(request)})
+
+
+#receptor = request.POST.get('receptor')

@@ -31,6 +31,31 @@
                 <br>
                 <p>Fecha de publicación:  {{mascotaHistoria.fechaPublicacion}}</p>
                 <a class="navbar-brand" href="{% url 'routePagesId' mascotaHistoria.id %}">Ver Historia ></a>
+                <br>
+
+
+                {% if mascotaHistoria.autor.id == user.id %}
+                <form method="POST" style="display: inline-block; text-align: left;">
+                    {% csrf_token %}
+                 
+                    <button type="submit" class="navbar-brand btn-custom" name="editarHistoria">
+                        Editar Historia >
+                        <input type="hidden" name="historiaId" value="{{ mascotaHistoria.id }}">
+                        <input type="hidden" name="tipoDeModificacion" value="editar">
+                    </button>
+                </form>
+                <br>
+                <form method="POST" style="display: inline-block; text-align: left;">
+                    {% csrf_token %}
+                  
+                    <button type="submit" class="navbar-brand btn-custom" name="eliminarHistoria">
+                        Eliminar Historia >
+                        <input type="hidden" name="historiaId" value="{{ mascotaHistoria.id }}">
+                        <input type="hidden" name="tipoDeModificacion" value="eliminar">
+                    </button>
+                </form>
+                {% endif %}
+
                 </div>
             </div>
             {% endfor %}
@@ -39,3 +64,4 @@
 
 
 {% endblock %}
+

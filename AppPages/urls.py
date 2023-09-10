@@ -9,6 +9,8 @@ urlpatterns = [
     path('routePages/',routePages,name="routePages"),
     path("routePages/<id>", routePagesId, name="routePagesId"),
     path('crearHistoria/',crearHistoria,name="crearHistoria"),
+    path("eliminarHistoria/", eliminarHistoria, name="eliminarHistoria"),
+    path("editarHistoria/", editarHistoria, name="editarHistoria"),
     # path("listar_curso/", Listar_cursos),
     # path("cursos/",cursos, name="cursos"),
     # path("profesores/",profesores, name="profesores"),

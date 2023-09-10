@@ -10917,3 +10917,12 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+/* Estilos para el botón personalizado */
+.btn-custom {
+  background-color: white; /* Fondo blanco */
+  border: none; /* Sin borde */
+  padding: 0; /* Sin relleno */
+  margin: 0; /* Sin margen */
+  color: your-desired-color; /* Cambia esto al color de texto deseado */
+  text-decoration: none; /* Sin subrayado de texto */
+}
